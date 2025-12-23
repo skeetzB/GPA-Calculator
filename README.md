@@ -1,2 +1,2 @@
-# Quiz-Mini-Game
-A mini-game coded in C++ which is a quiz with multiple choice answers about basic general tech knowledge
+# GPA Calculator
+A calculator that based on the perecntage of your grade towards the final grade calculates your GPA
