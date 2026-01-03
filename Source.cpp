@@ -96,3 +96,47 @@ void inputSubject(Subject& s, int number) {
 
     cin.ignore(); // safety for next subject
 }
+int main() {
+    const int NUM_SUBJECTS = 6;
+    Subject subjects[NUM_SUBJECTS];
+
+    double total_grade_points = 0.0;
+    int passed_subjects = 0;
+
+    cout << "=== Kalkulator i Notes finale (6 lende) ===\n";
+    cout << "Per secilen lende, percaktoni komponentet e vleresimit, perqindjet e tyre,\n";
+    cout << "dhe piket qe keni fituar ne secilen (out of 100).\n\n";
+
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        inputSubject(subjects[i], i + 1);
+
+        subjects[i].grade = calculateGrade(subjects[i].total_points);
+        subjects[i].evaluation = getEvaluation(subjects[i].grade);
+
+        total_grade_points += subjects[i].grade;
+        if (subjects[i].grade >= 6.0) {
+            passed_subjects++;
+        }
+    }
+
+    // Display results
+    cout << "\n\n=== Rezultatet ===\n\n";
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        cout << subjects[i].name << "\n";
+        cout << "  Ndarja e vleresimit dhe rezultatet tuaja:\n";
+        for (int j = 0; j < subjects[i].num_components; ++j) {
+            cout << "    - " << subjects[i].comp_description[j] << ": "
+                << subjects[i].comp_percentage[j] << "%  ->  "
+                << subjects[i].comp_earned[j] << "/100\n";
+        }
+        cout << "  piket perfundimtare : " << subjects[i].total_points << "/100\n";
+        cout << "  Nota perfundimtare: " << subjects[i].grade << "\n";
+        cout << "  Vleresimi: " << subjects[i].evaluation << "\n\n";
+    }
+
+    double average_grade = total_grade_points / NUM_SUBJECTS;
+    cout << "Nota juaj mesatare : " << average_grade << "\n";
+    cout << "Lendet e kaluara : " << passed_subjects << " nga 6\n";
+
+    return 0;
+}
