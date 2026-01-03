@@ -15,6 +15,34 @@ struct Subject {
     double grade;                             // 5.0 - 10.0
     string evaluation;                        // Excellent, Very Good, etc.
 };
+// Function 1: Convert total points (0-100) to grade (5.0 - 10.0)
+double calculateGrade(int points) {
+    if (points >= 90) return 10.0;
+    else if (points >= 80) return 9.0;
+    else if (points >= 70) return 8.0;
+    else if (points >= 60) return 7.0;
+    else if (points >= 50) return 6.0;
+    else return 5.0;
+}
+
+// Function 2: Get textual evaluation based on grade
+string getEvaluation(double grade) {
+    if (grade >= 9.0) return "Shkelqyeshem";
+    else if (grade >= 8.0) return "Shume mire";
+    else if (grade >= 7.0) return "Mire";
+    else if (grade >= 6.0) return "Kaluese";
+    else return "Jo Kaluese";
+}
+
+// Function 3: Input evaluation components and earned points (without vector)
+void inputEvaluationComponents(Subject& s) {
+    cout << "  Sa lloje te vlerimit keni ne " << s.name << " : ";
+    cin >> s.num_components;
+    while (s.num_components <= 0 || s.num_components > MAX_COMPONENTS) {
+        cout << "  Duhet te jete midis numrit 1 dhe " << MAX_COMPONENTS << "! Shkruaje prap: ";
+        cin >> s.num_components;
+    }
+    cin.ignore(); // clear newline
 double total_percent = 0.0;
 int weighted_sum = 0;
 
